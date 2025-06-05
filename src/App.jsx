@@ -1,19 +1,41 @@
+import RecipeasyUrl from './assets/Recipeasy-screenshot.png'
+import FnFUrl from './assets/FnF-screenshot.png'
+import ENUrl from './assets/EN-flag.png'
+import NLUrl from './assets/NL-flag.png'
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 function App() {
+  const { t, i18n } = useTranslation()
+
+  const [lang, setLang] = useState('en');
+
+  const changeLang = (lang) => {
+    setLang(lang);
+    i18n.changeLanguage(lang);
+  }
 
   return (
     <>
       <div className="navbar">
         <h3>Portfolio</h3>
+        <div className='g-2 d-flex'>
+          <button onClick={()=>{changeLang('en')}} className='btn-transparent'>
+            <img src={ENUrl} className={`img-lang ${('en' == lang) ? 'active' : ''}`} alt="Flag EN"/>
+          </button>
+          <button onClick={()=>{changeLang('nl')}} className='btn-transparent'>
+            <img src={NLUrl} className={`img-lang ${('nl' == lang) ? 'active' : ''}`} alt="Flag NL"/>
+          </button>
+        </div>
       </div>
       <div className='title'>
-        <h2>Hi!</h2>
+        <h2>{t("hi")}</h2>
         <hr/>
         <div className="d-flex">
           <p style={{paddingRight:'3rem'}}>
-            Hello! I'm Halima Suijkerbuijk, currently a 2nd year student at Fontys ICT. I have mostly worked with web development, and enjoy creating both back-end & front-end projects.
+            {t('description').line1}
             <br/>
-            Below are some projects from the past few semesters:
+            {t('description').line2}
           </p>
           <div className="d-flex col" style={{alignItems:'end'}}>
             <a href="https://github.com/L3m0n-ade" className="d-flex a-center">
@@ -24,7 +46,7 @@ function App() {
             </a>
             <br/>
             <a href="https://www.linkedin.com/in/halima-suijkerbuijk-2b2b81354/" className="d-flex a-center">
-              <svg xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 72 72" width="1rem" class="weava-extension-context" data-weava-installed="1">
+              <svg xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 72 72" width="1rem" data-weava-installed="1">
                 <g fill="none" fillRule="evenodd">
                   <path d="M8,72 L64,72 C68.418278,72 72,68.418278 72,64 L72,8 C72,3.581722 68.418278,-8.11624501e-16 64,0 L8,0 C3.581722,8.11624501e-16 -5.41083001e-16,3.581722 0,8 L0,64 C5.41083001e-16,68.418278 3.581722,72 8,72 Z" fill="var(--primary)"/>
                   <path d="M62,62 L51.315625,62 L51.315625,43.8021149 C51.315625,38.8127542 49.4197917,36.0245323 45.4707031,36.0245323 C41.1746094,36.0245323 38.9300781,38.9261103 38.9300781,43.8021149 L38.9300781,62 L28.6333333,62 L28.6333333,27.3333333 L38.9300781,27.3333333 L38.9300781,32.0029283 C38.9300781,32.0029283 42.0260417,26.2742151 49.3825521,26.2742151 C56.7356771,26.2742151 62,30.7644705 62,40.051212 L62,62 Z M16.349349,22.7940133 C12.8420573,22.7940133 10,19.9296567 10,16.3970067 C10,12.8643566 12.8420573,10 16.349349,10 C19.8566406,10 22.6970052,12.8643566 22.6970052,16.3970067 C22.6970052,19.9296567 19.8566406,22.7940133 16.349349,22.7940133 Z M11.0325521,62 L21.769401,62 L21.769401,27.3333333 L11.0325521,27.3333333 L11.0325521,62 Z" fill="white"/>
@@ -48,20 +70,19 @@ function App() {
           <div className="row">
             <div className="col col-12 col-lg-7">
               <div className="p-2">
-                <p className='txt-sm'>Semester 3 | January 2025</p>
+                <p className='txt-sm'>Semester 3 | {t('jan')} 2025</p>
                 <h4>Fins & Felines</h4>
-                <p>A multiplayer fishing game, where users can compete with others to score the most points in 2 minutes.
-                Users can choose from multiple avatars to play as, and view scores on the leaderboard.</p>
-                <p className='txt-sm'>(Game only playable with keyboard)</p>
+                <p>{t('fnfdesc')}</p>
+                <p className='txt-sm'>{t('keyboardonly')}</p>
               </div>
             </div>
             <div className="col col-12 col-lg-5">
-              <img className="img" src="assets/FnF-screenshot.png" alt="" />
+              <img className="img" src={FnFUrl} alt="" />
             </div>
           </div>
           <br/>
           <div className='card-links'>
-            <a className='btn' href="https://finsnfelines.netlify.app/" target="_blank">Visit</a>
+            <a className='btn' href="https://finsnfelines.netlify.app/" target="_blank">{t('visit')}</a>
             <p className='txt-sm'>Source code:
               <a href="https://github.com/L3m0n-ade/S3-Individual-FE" target="_blank">Front-end</a>
               <a href="https://github.com/L3m0n-ade/S3-Individual-BE" target="_blank">Back-end</a>
@@ -72,18 +93,18 @@ function App() {
           <div className="row">
             <div className="col col-12 col-lg-7">
               <div className="p-2">
-                <p className='txt-sm'>Semester 2 | June 2024</p>
+                <p className='txt-sm'>Semester 2 | {t('jun')} 2024</p>
                 <h4>RecipEasy</h4>
-                <p>A recipe-sharing web app, where users can write and discover recipes or articles, leave comments and follow other users.</p>
+                <p>{t('recipdesc')}</p>
               </div>
             </div>
             <div className="col col-12 col-lg-5">
-              <img className="img" src="assets/RecipEasy-screenshot.png" alt="" />
+              <img className="img" src={RecipeasyUrl} alt="" />
             </div>
           </div>
           <br/>
           <div className='card-links'>
-            <a className='btn' href="https://i539303.luna.fhict.nl/" target="_blank">Visit</a>
+            <a className='btn' href="https://i539303.luna.fhict.nl/" target="_blank">{t('visit')}</a>
             <a className='txt-sm' style={{color:'var(--primary)'}} href="https://github.com/L3m0n-ade/S2-Individual-Project" target="_blank">Source code</a>
           </div>
         </div>

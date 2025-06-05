@@ -3,6 +3,7 @@
 :root {
   --text:#150047;
   --gray:#8b8695;
+  --primary-dk:#4a1986;
   --primary:#5719a3;
   --primary-lt:#7a39ca;
   --primary-xlt: #e6dbff;
@@ -53,21 +54,21 @@ img {
   flex: 1 0 0%;
   flex-direction: column; 
 }
-@media(min-width: 992px){
+.col-12{
+  flex: 0 0 auto;
+  width: 100%;
+}
+@media(min-width: 792px){
   .col-lg-7 { 
     flex: 0 0 auto;
     max-width: 65% !important;
   }
 }
-@media (min-width: 576px){
+@media (min-width: 792px){
   .col-lg-5 { 
     flex: 0 0 auto;
     max-width: 35% !important;
   }
-}
-.col-12{
-  flex: 0 0 auto;
-  width: 100%;
 }
 .row { 
   --bs-gutter-x: 1.5rem;
@@ -83,6 +84,9 @@ img {
 .p-2{
   padding:.5rem !important;
 }
+.g-2{
+  gap: .5rem;
+}
 
 .contents {
   margin: 1rem;
@@ -96,10 +100,13 @@ img {
 
 .navbar {
   padding: .4rem 2.5rem;
-  background: rgba(255, 245, 232, 0.7);
+  background: rgba(255, 245, 232, 0.6);
   backdrop-filter: blur(7px);
   border-bottom: 1.2px solid rgb(255, 244, 233);
   box-shadow: 0px 2px 1px rgba(121, 103, 176, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   
   position: fixed;
   z-index: 1;
@@ -114,22 +121,18 @@ img {
   border-radius: 1.5rem 1.5rem 0 0;
   background: linear-gradient(0deg, rgba(255, 245, 233, 0.8) 0%, rgba(255, 248, 239, 0.9) 100%);
   border-bottom: 1.2px solid rgb(255, 244, 233);
-  /* border-bottom:none; */
 }
 
 .card {
   padding: 1.5rem;
   margin: 2.5rem 0;
   max-width: 75%;
-  border-radius: 1.5rem;
+  border-radius: 1rem;
   transition-duration: 0.3s;
   transition-property: box-shadow, transform;
   box-shadow: 10px 10px rgba(129, 119, 159, 0.667);
   
   background: linear-gradient(23deg, #ffffff56 0%, rgba(255, 241, 228, 0.7) 50%);
-  border-radius: 16px;
-  backdrop-filter: blur(10.5px);
-  -webkit-backdrop-filter: blur(10.5px);
   border: 1.2px solid rgb(255, 244, 233);
 }
 .card:hover {
@@ -152,4 +155,24 @@ img {
 .btn:hover {
   background-color: var(--primary-lt);
   text-decoration: none;
+}
+.btn-transparent {
+  padding: 0px;
+  background-color: transparent;
+  border: none;
+  display: flex;
+}
+.btn-transparent:hover {
+  cursor: pointer;
+}
+.img-lang {
+  border-radius: 5px;
+  width: 20px;
+  filter: opacity(0.6);
+}
+.img-lang:hover {
+  filter: brightness(1.2);
+}
+.img-lang.active {
+  filter: opacity(1);
 }
